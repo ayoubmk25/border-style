@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     *{
+        margin: 0; padding:0
+    }
+    body{
+       
+        height: 100vh;
+        background: linear-gradient(to right, #000000, #2b25e8);
+    }
+    .card{
+        height: 300px;
+        width: 300px;
+        background-color: transparent;
+        transform: translate(500px,0px);
+        border: 3px solid transparent;
+        background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    }
+    .range{
+        display: flex;
+        flex-direction: column;
+       padding: 70px;
+    }
+    .range input{
+        margin: 15px;
+    }
+    .text{
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        border: 3px solid white;
+        height: 300px;
+        width: 300px;
+        color: white;
+        font-size: 8px;
+        background-color: #000000;
+        
+    }
+    .text h1{
+        background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-left: 5px;
+        margin-bottom: 50px;
+    }
+    .text h1 span{
+        margin-left: 10px;
+        font-size: 25px;
+    }
+    label{
+        color: white;
+        margin-left: 20px;
+    }
+    input[type=range] {
+  height: 34px;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #002200;
+  background: #205928;
+  border-radius: 1px;
+  border: 1px solid #18D501;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 3px 3px 3px #00AA00;
+  border: 2px solid #83E584;
+  height: 23px;
+  width: 23px;
+  border-radius: 23px;
+  background: #439643;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #205928;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #002200;
+  background: #205928;
+  border-radius: 1px;
+  border: 1px solid #18D501;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 3px 3px 3px #00AA00;
+  border: 2px solid #83E584;
+  height: 23px;
+  width: 23px;
+  border-radius: 23px;
+  background: #439643;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #205928;
+  border: 1px solid #18D501;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #002200;
+}
+input[type=range]::-ms-fill-upper {
+  background: #205928;
+  border: 1px solid #18D501;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #002200;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 3px 3px 3px #00AA00;
+  border: 2px solid #83E584;
+  height: 23px;
+  width: 23px;
+  border-radius: 23px;
+  background: #439643;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #205928;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #205928;
+}
+    </style>
+</head>
+<body>
+    <div class="range">
+        <label> border-bottom-right-radius:</label>
+        <input type="range" max="100" min="0" value="0" class="right">
+        <label> border-bottom-left-radius:</label>
+        <input type="range" max="100" min="0" value="0" class="left">
+        <label> border-top-right-radius:</label>
+        <input type="range" max="100" min="0" value="0" class="bottom">
+        <label>  border-top-left-radius:</label>
+        <input type="range" max="100" min="0" value="0" class="top">
+    </div>
+   
+    <div class="card"></div>
+    <div class="text">
+        <h1>border-bottom-right-radius:<span id="rightVal">0</span></h1>
+        <h1>border-bottom-left-radius:<span id="leftVal">0</span></h1>
+        <h1> border-top-right-radius:<span id="bottomVal">0</span></h1>
+        <h1>border-top-left-radius:<span id="topVal">0</span></h1>
+    </div>
+    <script>
+        var range = document.querySelectorAll('.range input');
+        var card = document.querySelector(".card");
+        var text = document.querySelector(".text");
+        range.forEach(function(input) {
+            input.addEventListener('input', function() {
+                var rightVal = document.querySelector('.right').value;
+                var leftVal = document.querySelector('.left').value;
+                var bottomVal = document.querySelector('.bottom').value;
+                var topVal = document.querySelector('.top').value;
+
+                card.style.borderTopLeftRadius=topVal +"%";
+                card.style.borderBottomRightRadius=rightVal +"%";
+                card.style.borderBottomLeftRadius=leftVal +"%";
+                card.style.borderTopRightRadius=bottomVal +"%";
+                
+                document.getElementById('rightVal').textContent = rightVal +"%" +";";
+                document.getElementById('leftVal').textContent = leftVal +"%"+";";
+                document.getElementById('bottomVal').textContent = bottomVal +"%"+";";
+                document.getElementById('topVal').textContent = topVal +"%"+";";
+            });
+        });
+    </script>
+</body>
+</html>
